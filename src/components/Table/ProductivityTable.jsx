@@ -92,6 +92,41 @@ const ProductivityTable = () => {
     // console.log(table.getCoreRowModel().rows)
     return (
         <>
+
+            <div class="flex justify-center">
+
+                <div class="w-[80%] flex flex-wrap justify-left">
+                    <div class="flex flex-col m-5 w-full lg:w-[25%]">
+                        <label for="lineNumber" class="font-bold text-lg mr-2 mb-3 text-left">LineNumber</label>
+                        <select id="lineNumber" name="lineNumber" class="border-2 border-gray-300 rounded px-2 py-1 focus:outline-none">
+
+                            <option value="">----Select----</option>
+                            <option value="line1">Line 1</option>
+                            <option value="line2">Line 2</option>
+                            <option value="line3">Line 3</option>
+
+                        </select>
+                    </div>
+                    <div class="flex flex-col m-5 w-full lg:w-[25%]">
+                        <label for="operatorName" class="font-bold text-lg mr-2 mb-3 text-left">Operator Name</label>
+                        <select id="operatorName" name="operatorName" class="border-2 border-gray-300 rounded px-2 py-1 focus:outline-none">
+
+                            <option value="">----Select----</option>
+                            <option value="operator1">Operator 1</option>
+                            <option value="operator2">Operator 2</option>
+                            <option value="operator3">Operator 3</option>
+
+                        </select>
+                    </div>
+                    <div class="flex flex-col m-5 w-full lg:w-[25%]">
+                        <label for="reportDate" class="font-bold text-lg mr-2 mb-3 text-left">Report Date</label>
+                        <input type="date" id="reportDate" name="reportDate" class="border-2 border-gray-300 rounded px-2 py-1 focus:outline-none" />
+                    </div>
+
+                </div>
+
+            </div>
+
             <div className='flex justify-center'>
                 <div className='overflow-x-auto'>
                     <table classname="table-auto">
@@ -143,18 +178,20 @@ const ProductivityTable = () => {
 
             <style jsx>{`
                 /* CSS for table */
-                
-                
                 button{
                     margin: 20px 5px;
-                    padding:5px 10px;
-                    border: 1px solid #E15465;
-                    font-size:15px;
+                    padding:5px 20px;
+                    background-color: #ddd;
+                    font-size:16px;
+                    border-radius: 5px;
+                    font-weight: 500;
                 }
                 button:hover{
                     background-color:#E15465;
                     color: #fff;
-                    font-size:15px;
+                    font-size:16px;
+                    border-radius: 5px;
+                    font-weight: 500;
                 }
                 
                 /* CSS for table header */
