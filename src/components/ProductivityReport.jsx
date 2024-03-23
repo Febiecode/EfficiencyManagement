@@ -1,5 +1,5 @@
 import NavBar from "./Navigation/NavBar";
-import ProductivityTable from "./ProductivityTable";
+import ProductivityTable from "./Table/ProductivityTable";
 
 const ProductivityReport = () =>{
     return(
