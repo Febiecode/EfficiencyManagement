@@ -92,13 +92,13 @@ const ProductivityTable = () => {
     // console.log(table.getCoreRowModel().rows)
     return (
         <>
-            <div className="entireTable">
-                <div class="table">
-                    <table>
+            <div className='flex justify-center'>
+                <div className='overflow-x-auto'>
+                    <table classname="table-auto">
                         <thead>
                             {
                                 table.getHeaderGroups().map(headerGroup => (
-                                    <tr key={headerGroup.id}>
+                                    <tr class="item" key={headerGroup.id}>
                                         {headerGroup.headers.map(header => (
                                             <th key={header.id}>
                                                 {header.isPlaceholder ? null : flexRender(
@@ -114,7 +114,7 @@ const ProductivityTable = () => {
                         <tbody>
                             {
                                 table.getRowModel().rows.map(row => (
-                                    <tr key={row.id}>
+                                    <tr class="item" key={row.id}>
                                         {row.getVisibleCells().map(cell => (
                                             <td key={cell.id}>
                                                 {
@@ -132,36 +132,30 @@ const ProductivityTable = () => {
 
                     </table>
                 </div>
-                <div class="pagination">
-                    <button onClick={() => table.setPageIndex(0)}>1</button>
-                    <button disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Prev</button>
-                    <button disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next</button>
-                    <button onClick={() => table.setPageIndex(table.getPageCount() - 1)}>{table.getPageCount()}</button>
-                </div>
             </div>
+            <div className='flex justify-center'>
+                <button onClick={() => table.setPageIndex(0)}>1</button>
+                <button disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Prev</button>
+                <button disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next</button>
+                <button onClick={() => table.setPageIndex(table.getPageCount() - 1)}>{table.getPageCount()}</button>
+            </div>
+
 
             <style jsx>{`
                 /* CSS for table */
                 
-                .entireTable{
-                    display:flex;
-                    flex-direction:column;
-                    align-items:center;
-                    overflow-x:auto;
-                    max-width:100%;
-                }
+                
                 button{
-                    margin: 20px 10px;
-                    padding:10px 20px;
+                    margin: 20px 5px;
+                    padding:5px 10px;
                     border: 1px solid #E15465;
-                    font-size:20px;
+                    font-size:15px;
                 }
                 button:hover{
                     background-color:#E15465;
                     color: #fff;
-                    font-size:20px;
+                    font-size:15px;
                 }
-                
                 
                 /* CSS for table header */
                 th {
@@ -169,6 +163,7 @@ const ProductivityTable = () => {
                   color: white; /* Header text color */
                   padding: 8px;
                   text-align: center;
+                  position: sticky;
                 }
                 
                 /* CSS for table rows */
