@@ -3,10 +3,11 @@ import {
     useReactTable,
     getCoreRowModel,
     getPaginationRowModel,
-    flexRender
+    flexRender,
+    getFilteredRowModel
 } from '@tanstack/react-table'
 import mData from '../MOCK_DATA.json'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 
 const ProductivityTable = () => {
     /* {
@@ -21,8 +22,8 @@ const ProductivityTable = () => {
         "MachineDowntime": 10,
         "Productivity": 58.58
     }*/
-
-    const data = useMemo(() => mData, [])
+    const data = useMemo(() => mData, []);
+    const [filter, setFilter] = useState('');
 
     const columns = [
         {
@@ -87,9 +88,22 @@ const ProductivityTable = () => {
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel()
+        getPaginationRowModel: getPaginationRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
+        state:{
+            globalFilter: filter,
+        },
+        onGlobalFilterChange: setFilter,
     })
     // console.log(table.getCoreRowModel().rows)
+
+    const filteredRows = table.getRowModel().rows.filter(row => {
+        // Assuming each row is an object with keys corresponding to column values
+        return Object.values(row.original).some(value =>
+            value.toString().toLowerCase().includes(filter.toLowerCase())
+        );
+    });
+
     return (
         <>
 
@@ -98,23 +112,31 @@ const ProductivityTable = () => {
                 <div class="w-[80%] flex flex-wrap justify-left">
                     <div class="flex flex-col m-5 w-full lg:w-[25%]">
                         <label for="lineNumber" class="font-bold text-lg mr-2 mb-3 text-left">LineNumber</label>
-                        <select id="lineNumber" name="lineNumber" class="border-2 border-gray-300 rounded px-2 py-1 focus:outline-none">
+                        <select id="lineNumber" name="lineNumber" class="border-2 border-gray-300 rounded px-2 py-1 focus:outline-none" value={filter}
+                            onChange={(e)=>setFilter(e.target.value)}>
 
                             <option value="">----Select----</option>
                             <option value="line1">Line 1</option>
                             <option value="line2">Line 2</option>
                             <option value="line3">Line 3</option>
+                            <option value="line4">Line 4</option>
+                            <option value="line5">Line 5</option>
+                            <option value="line6">Line 6</option>
 
                         </select>
                     </div>
                     <div class="flex flex-col m-5 w-full lg:w-[25%]">
                         <label for="operatorName" class="font-bold text-lg mr-2 mb-3 text-left">Operator Name</label>
-                        <select id="operatorName" name="operatorName" class="border-2 border-gray-300 rounded px-2 py-1 focus:outline-none">
+                        <select id="operatorName" name="operatorName" class="border-2 border-gray-300 rounded px-2 py-1 focus:outline-none" value={filter}
+                            onChange={(e)=>setFilter(e.target.value)}>
 
                             <option value="">----Select----</option>
-                            <option value="operator1">Operator 1</option>
-                            <option value="operator2">Operator 2</option>
-                            <option value="operator3">Operator 3</option>
+                            <option value="Wilmar Stanex">Wilmar Stanex</option>
+                            <option value="Lurette Blasli">Lurette Blasli</option>
+                            <option value="Ado Seppey">Ado Seppey</option>
+                            <option value="Allen Binstead">Allen Binstead</option>
+                            <option value="Clem Di Pietro">Clem Di Pietro</option>
+                            <option value="Guillema Wegman">Guillema Wegman</option>
 
                         </select>
                     </div>
@@ -148,17 +170,17 @@ const ProductivityTable = () => {
 
                         <tbody>
                             {
-                                table.getRowModel().rows.map(row => (
+
+                                filteredRows.map(row => (
                                     <tr class="item" key={row.id}>
                                         {row.getVisibleCells().map(cell => (
                                             <td key={cell.id}>
-                                                {
-                                                    flexRender(cell.column.columnDef.cell, cell.getContext())
-                                                }
+                                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                             </td>
                                         ))}
                                     </tr>
                                 ))
+
                             }
                         </tbody>
                         <tfoot>
