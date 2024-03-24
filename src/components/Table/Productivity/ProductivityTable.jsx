@@ -6,24 +6,15 @@ import {
     flexRender,
     getFilteredRowModel
 } from '@tanstack/react-table'
-import mData from '../MOCK_DATA.json'
+import mData from './MOCK_DATA.json'
 import { useMemo, useState } from 'react'
 
 const ProductivityTable = () => {
-    /* {
-        "LineNumber": 42,
-        "EmployeeID": "96-3617188",
-        "OperatorName": "Corabel Alvares",
-        "MCID": "47-2791155",
-        "MachineName": "Chevrolet",
-        "Operation": "Electrical Engineer",
-        "TargetOutput": 178,
-        "ActualOutput": 163,
-        "MachineDowntime": 10,
-        "Productivity": 58.58
-    }*/
-    const data = useMemo(() => mData, []);
     const [filter, setFilter] = useState('');
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const data = useMemo(() => mData, []);
+    
+    
 
     const columns = [
         {
@@ -104,15 +95,69 @@ const ProductivityTable = () => {
         );
     });
 
+    const inputStyle ={
+        border: '2px solid grey',
+        borderRadius: '5px',
+        padding: '2px 10px',
+        outline: 'none'
+    }
+
+    const label = {
+        fontWeight: '500',
+        fontSize: '20px',
+        marginRight: '2px',
+        marginBottom: '1px',
+        textContent: 'left'
+    }
+
+    const innerWrapper = {
+        display: 'flex',
+        flexDirection: 'column',
+        margin: '30px 20px',
+        width: '20%', // 'width': '70%'
+        justifyContent: 'center',
+    }
+
+    const resInnerWrapper = {
+        display: 'flex',
+        flexDirection: 'column',
+        margin: '30px 20px',
+        width: '70%', // 'width': '70%'
+        justifyContent: 'center',
+    }
+
+    const outerWrapper = {
+        display: 'flex',
+        flexDirection: 'row', //'flex-direction': 'column',
+        flexWrap: 'wrap',
+        width: '80%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+
+    const resOuterWrapper = {
+        display: 'flex',
+        flexDirection: 'column', //'flex-direction': 'column',
+        flexWrap: 'wrap',
+        width: '80%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+
+    const outer = {
+        display: 'flex',
+        justifyContent: 'center',
+    }
+
     return (
         <>
 
-            <div class="flex justify-center">
+            <div style={outer}>
 
-                <div class="w-[80%] flex flex-wrap justify-left">
-                    <div class="flex flex-col m-5 w-full lg:w-[25%]">
-                        <label for="lineNumber" class="font-bold text-lg mr-2 mb-3 text-left">LineNumber</label>
-                        <select id="lineNumber" name="lineNumber" class="border-2 border-gray-300 rounded px-2 py-1 focus:outline-none" value={filter}
+                <div style={windowWidth > 600 ? outerWrapper : resOuterWrapper} className='outerWrapper'>
+                    <div style={windowWidth > 600 ? innerWrapper : resInnerWrapper}className='innerWrapper'>
+                        <label for="lineNumber" style={label}>LineNumber</label>
+                        <select id="lineNumber" name="lineNumber" style={inputStyle}  value={filter}
                             onChange={(e)=>setFilter(e.target.value)}>
 
                             <option value="">----Select----</option>
@@ -125,9 +170,9 @@ const ProductivityTable = () => {
 
                         </select>
                     </div>
-                    <div class="flex flex-col m-5 w-full lg:w-[25%]">
-                        <label for="operatorName" class="font-bold text-lg mr-2 mb-3 text-left">Operator Name</label>
-                        <select id="operatorName" name="operatorName" class="border-2 border-gray-300 rounded px-2 py-1 focus:outline-none" value={filter}
+                    <div style={windowWidth > 600 ? innerWrapper : resInnerWrapper}>
+                        <label for="operatorName" style={label}>Operator Name</label>
+                        <select id="operatorName" name="operatorName" style={inputStyle} value={filter}
                             onChange={(e)=>setFilter(e.target.value)}>
 
                             <option value="">----Select----</option>
@@ -140,9 +185,9 @@ const ProductivityTable = () => {
 
                         </select>
                     </div>
-                    <div class="flex flex-col m-5 w-full lg:w-[25%]">
-                        <label for="reportDate" class="font-bold text-lg mr-2 mb-3 text-left">Report Date</label>
-                        <input type="date" id="reportDate" name="reportDate" class="border-2 border-gray-300 rounded px-2 py-1 focus:outline-none" />
+                    <div style={windowWidth > 600 ? innerWrapper : resInnerWrapper}>
+                        <label for="reportDate" style={label}>Report Date</label>
+                        <input type="date" id="reportDate" name="reportDate" style={inputStyle} />
                     </div>
 
                 </div>
