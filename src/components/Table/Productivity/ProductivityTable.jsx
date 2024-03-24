@@ -8,12 +8,13 @@ import {
 } from '@tanstack/react-table'
 import mData from './MOCK_DATA.json'
 import { useMemo, useState } from 'react'
+import UseWindowSize from '../../../Hooks/UseWindowSize'
 
 const ProductivityTable = () => {
     const [filter, setFilter] = useState('');
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowWidth, setWindowWidth] = UseWindowSize();;
     const data = useMemo(() => mData, []);
-    
+
     
 
     const columns = [
