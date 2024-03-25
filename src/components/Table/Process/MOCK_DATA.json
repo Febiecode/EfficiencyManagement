@@ -1,0 +1,23 @@
+[
+    {
+      "processId": "ABC123",
+      "processDescription": "Assembly process for product XYZ",
+      "perPcTime": "30 minutes",
+      "status": "In progress",
+      "createdDate": "2024-03-25",
+      "createdBy": "John Doe",
+      "updatedDate": "2024-03-25",
+      "updatedBy": "Jane Smith"
+    },
+    {
+      "processId": "DEF456",
+      "processDescription": "Testing process for component LMN",
+      "perPcTime": "15 minutes",
+      "status": "Completed",
+      "createdDate": "2024-03-24",
+      "createdBy": "Alice Johnson",
+      "updatedDate": "2024-03-25",
+      "updatedBy": "Bob Brown"
+    }
+  ]
+  
