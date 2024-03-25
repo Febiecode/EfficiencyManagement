@@ -6,6 +6,15 @@ import {
     flexRender,
     getFilteredRowModel
 } from '@tanstack/react-table'
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "../../../components/ui/table"
+
 import mData from './MOCK_DATA.json'
 import { useMemo, useState } from 'react'
 import UseWindowSize from '../../../Hooks/UseWindowSize'
@@ -15,7 +24,7 @@ const ProductivityTable = () => {
     const [windowWidth, setWindowWidth] = UseWindowSize();;
     const data = useMemo(() => mData, []);
 
-    
+
 
     const columns = [
         {
@@ -82,7 +91,7 @@ const ProductivityTable = () => {
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
-        state:{
+        state: {
             globalFilter: filter,
         },
         onGlobalFilterChange: setFilter,
@@ -96,16 +105,17 @@ const ProductivityTable = () => {
         );
     });
 
-    const inputStyle ={
-        border: '2px solid grey',
+    const inputStyle = {
+        border: '1px solid #E7E5E4',
         borderRadius: '5px',
         padding: '2px 10px',
-        outline: 'none'
+        outline: 'none',
+        fontSize: '16px'
     }
 
     const label = {
         fontWeight: '500',
-        fontSize: '20px',
+        fontSize: '16px',
         marginRight: '2px',
         marginBottom: '1px',
         textContent: 'left'
@@ -156,12 +166,12 @@ const ProductivityTable = () => {
             <div style={outer}>
 
                 <div style={windowWidth > 600 ? outerWrapper : resOuterWrapper} className='outerWrapper'>
-                    <div style={windowWidth > 600 ? innerWrapper : resInnerWrapper}className='innerWrapper'>
+                    <div style={windowWidth > 600 ? innerWrapper : resInnerWrapper} className='innerWrapper'>
                         <label for="lineNumber" style={label}>LineNumber</label>
-                        <select id="lineNumber" name="lineNumber" style={inputStyle}  value={filter}
-                            onChange={(e)=>setFilter(e.target.value)}>
+                        <select id="lineNumber" name="lineNumber" style={inputStyle} value={filter}
+                            onChange={(e) => setFilter(e.target.value)}>
 
-                            <option value="">----Select----</option>
+                            <option value="">All Line</option>
                             <option value="line1">Line 1</option>
                             <option value="line2">Line 2</option>
                             <option value="line3">Line 3</option>
@@ -174,9 +184,9 @@ const ProductivityTable = () => {
                     <div style={windowWidth > 600 ? innerWrapper : resInnerWrapper}>
                         <label for="operatorName" style={label}>Operator Name</label>
                         <select id="operatorName" name="operatorName" style={inputStyle} value={filter}
-                            onChange={(e)=>setFilter(e.target.value)}>
+                            onChange={(e) => setFilter(e.target.value)}>
 
-                            <option value="">----Select----</option>
+                            <option value="">Operator Names</option>
                             <option value="Wilmar Stanex">Wilmar Stanex</option>
                             <option value="Lurette Blasli">Lurette Blasli</option>
                             <option value="Ado Seppey">Ado Seppey</option>
@@ -197,43 +207,58 @@ const ProductivityTable = () => {
 
             <div className='flex justify-center'>
                 <div className='overflow-x-auto'>
-                    <table classname="table-auto">
-                        <thead>
-                            {
-                                table.getHeaderGroups().map(headerGroup => (
-                                    <tr class="item" key={headerGroup.id}>
-                                        {headerGroup.headers.map(header => (
-                                            <th key={header.id}>
-                                                {header.isPlaceholder ? null : flexRender(
-                                                    header.column.columnDef.header,
-                                                    header.getContext()
-                                                )}
-                                            </th>
-                                        ))}
-                                    </tr>
+
+                    <div className="rounded-md border">
+                        <Table>
+                            <TableHeader>
+                                {table.getHeaderGroups().map((headerGroup) => (
+                                    <TableRow key={headerGroup.id}>
+                                        {headerGroup.headers.map((header) => {
+                                            return (
+                                                <TableHead key={header.id}>
+                                                    {header.isPlaceholder
+                                                        ? null
+                                                        : flexRender(
+                                                            header.column.columnDef.header,
+                                                            header.getContext()
+                                                        )}
+                                                </TableHead>
+                                            )
+                                        })}
+                                    </TableRow>
                                 ))}
-                        </thead>
 
-                        <tbody>
-                            {
 
-                                filteredRows.map(row => (
-                                    <tr class="item" key={row.id}>
-                                        {row.getVisibleCells().map(cell => (
-                                            <td key={cell.id}>
-                                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                            </td>
-                                        ))}
-                                    </tr>
-                                ))
+                            </TableHeader>
+                            <TableBody>
+                                {filteredRows.length ? (
+                                    filteredRows.map((row) => (
+                                        <TableRow
+                                            key={row.id}
+                                            data-state={row.getIsSelected() && "selected"}
+                                        >
+                                            {row.getVisibleCells().map((cell) => (
+                                                <TableCell key={cell.id}>
+                                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                                </TableCell>
+                                            ))}
+                                        </TableRow>
+                                    ))
+                                ) : (
+                                    <TableRow>
+                                        <TableCell colSpan={columns.length} className="h-24 text-center">
+                                            No results.
+                                        </TableCell>
+                                    </TableRow>
+                                )}
 
-                            }
-                        </tbody>
-                        <tfoot>
+                                
+                            </TableBody>
 
-                        </tfoot>
 
-                    </table>
+                        </Table>
+                    </div>
+
                 </div>
             </div>
             <div className='flex justify-center'>
@@ -246,10 +271,11 @@ const ProductivityTable = () => {
 
             <style jsx>{`
                 /* CSS for table */
+                
                 button{
                     margin: 20px 5px;
                     padding:5px 20px;
-                    background-color: #ddd;
+                    background-color:#F2F3F5;
                     font-size:16px;
                     border-radius: 5px;
                     font-weight: 500;
