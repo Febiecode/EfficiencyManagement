@@ -6,6 +6,17 @@ import {
     flexRender,
     getFilteredRowModel
 } from '@tanstack/react-table'
+
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "../../../components/ui/table"
+
+
 import mData from './MOCK_DATA.json'
 import { useMemo, useState } from 'react'
 
@@ -93,7 +104,7 @@ const EfficiencyTable = () => {
     });
 
     const inputStyle ={
-        border: '2px solid grey',
+        border: '1px solid #E7E5E4',
         borderRadius: '5px',
         padding: '2px 10px',
         outline: 'none'
@@ -193,43 +204,56 @@ const EfficiencyTable = () => {
 
             <div className='flex justify-center'>
                 <div className='overflow-x-auto'>
-                    <table classname="table-auto">
-                        <thead>
-                            {
-                                table.getHeaderGroups().map(headerGroup => (
-                                    <tr class="item" key={headerGroup.id}>
-                                        {headerGroup.headers.map(header => (
-                                            <th key={header.id}>
-                                                {header.isPlaceholder ? null : flexRender(
-                                                    header.column.columnDef.header,
-                                                    header.getContext()
-                                                )}
-                                            </th>
-                                        ))}
-                                    </tr>
+                <div className="rounded-md border">
+                        <Table>
+                            <TableHeader>
+                                {table.getHeaderGroups().map((headerGroup) => (
+                                    <TableRow key={headerGroup.id}>
+                                        {headerGroup.headers.map((header) => {
+                                            return (
+                                                <TableHead key={header.id}>
+                                                    {header.isPlaceholder
+                                                        ? null
+                                                        : flexRender(
+                                                            header.column.columnDef.header,
+                                                            header.getContext()
+                                                        )}
+                                                </TableHead>
+                                            )
+                                        })}
+                                    </TableRow>
                                 ))}
-                        </thead>
 
-                        <tbody>
-                            {
 
-                                filteredRows.map(row => (
-                                    <tr class="item" key={row.id}>
-                                        {row.getVisibleCells().map(cell => (
-                                            <td key={cell.id}>
-                                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                            </td>
-                                        ))}
-                                    </tr>
-                                ))
+                            </TableHeader>
+                            <TableBody>
+                                {filteredRows.length ? (
+                                    filteredRows.map((row) => (
+                                        <TableRow
+                                            key={row.id}
+                                            data-state={row.getIsSelected() && "selected"}
+                                        >
+                                            {row.getVisibleCells().map((cell) => (
+                                                <TableCell key={cell.id}>
+                                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                                </TableCell>
+                                            ))}
+                                        </TableRow>
+                                    ))
+                                ) : (
+                                    <TableRow>
+                                        <TableCell colSpan={columns.length} className="h-24 text-center">
+                                            No results.
+                                        </TableCell>
+                                    </TableRow>
+                                )}
 
-                            }
-                        </tbody>
-                        <tfoot>
+                                
+                            </TableBody>
 
-                        </tfoot>
 
-                    </table>
+                        </Table>
+                    </div>
                 </div>
             </div>
             <div className='flex justify-center'>

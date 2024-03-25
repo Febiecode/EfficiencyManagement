@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 
 
@@ -8,6 +9,9 @@ const ProcessTable = ({ tableData }) => {
     <>
       <div className='flex justify-center'>
         <div className='overflow-x-auto'>
+
+          <div className="rounded-md border">
+
           <table classname="table-auto">
             <thead>
               <tr>
@@ -43,47 +47,39 @@ const ProcessTable = ({ tableData }) => {
             </tfoot>
 
           </table>
+          </div>
+          
         </div>
       </div>
 
 
       <style jsx>{`
                 /* CSS for table */
-                button{
-                    margin: 20px 5px;
-                    padding:5px 20px;
-                    background-color: #ddd;
-                    font-size:16px;
-                    border-radius: 5px;
-                    font-weight: 500;
-                }
-                button:hover{
-                    background-color:#E15465;
-                    color: #fff;
-                    font-size:16px;
-                    border-radius: 5px;
-                    font-weight: 500;
-                }
+                
                 
                 /* CSS for table header */
                 th {
-                  background-color: #E15465; /* Header background color */
-                  color: white; /* Header text color */
+                  background-color: #ffffff; /* Header background color */
+                  color: #78716C; /* Header text color */
                   padding: 8px;
-                  text-align: center;
-                  position: sticky;
+                  text-align: left;
+                  font-size: 14px;
+                  font-weight: 500;
+                  border-bottom: 1px solid #ddd;
                 }
                 
-                /* CSS for table rows */
-                // tr:nth-child(even) {
-                //   background-color: #f2f2f2;
-                // }
-                
+
                 /* CSS for table cell */
+                tr:hover{
+                  background-color: #FAFAF9;
+                }
                 td {
+                  color: #0C0A09;
+                  font-weight: 400;
+                  font-size: 14px;
                   padding: 8px;
-                  text-align: center;
-                  border: 2px solid #ddd;
+                  text-align: left;
+                  border-bottom: 1px solid #ddd;
                 }
                 
             `}</style>

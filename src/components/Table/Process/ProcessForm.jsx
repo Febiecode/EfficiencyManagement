@@ -1,21 +1,28 @@
 "use client"
 
 import UseWindowSize from '../../../Hooks/UseWindowSize'
+import React, { useState, useMemo } from "react";
+
+import Table from "./ProcessTable";
+import mData from './MOCK_DATA.json'
+
 
 const ProcessForm = ({ onValChange, formObject, onFormSubmit }) => {
   const [windowWidth, setWindowWidth] = UseWindowSize();
+  const data = useMemo(() => mData, []);
+  const [tableData, setTableData] = useState(data);
 
   const inputStyle = {
-    border: '2px solid grey',
+    border: '2px solid #E7E5E4',
     borderRadius: '5px',
     padding: '2px 10px',
     outline: 'none',
-    backgroundColor: '#ddd',
+    backgroundColor: '#fff',
   }
 
   const label = {
     fontWeight: '700',
-    
+
     margin: '20px',
   }
 
@@ -37,7 +44,7 @@ const ProcessForm = ({ onValChange, formObject, onFormSubmit }) => {
     fontSize: '16px',
   }
 
-  
+
 
   const outerWrapper = {
     display: 'flex',
@@ -84,7 +91,7 @@ const ProcessForm = ({ onValChange, formObject, onFormSubmit }) => {
     display: 'flex',
     flexDirection: 'row',
     margin: '30px 0px',
-    width: '40%', 
+    width: '40%',
     justifyContent: 'space-between',
   }
 
@@ -93,11 +100,25 @@ const ProcessForm = ({ onValChange, formObject, onFormSubmit }) => {
     flexDirection: 'column',
     margin: '10px 0px',
     width: '100%',
-    justifyContent: 'center',
+    justifyContent: 'center',
     padding: '10px'
-  }
+  }
 
-  
+  const downBtn = {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  }
+
+  const resDownBtn = {
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  }
+
+
   return (
 
     <>
@@ -126,7 +147,7 @@ const ProcessForm = ({ onValChange, formObject, onFormSubmit }) => {
             {/* lableInput */}
             <div style={windowWidth > 600 ? labelInput : reslabelInput}>
               <div>
-                <label for="processDescription" style={label}>Process Description</label>
+                <label for="processDescription" style={label}>ProcessDes..</label>
               </div>
               <div>
                 <input style={inputStyle}
@@ -203,25 +224,62 @@ const ProcessForm = ({ onValChange, formObject, onFormSubmit }) => {
       </div>
 
 
+      <Table tableData={tableData} />
+
+      <div style={windowWidth > 600 ? downBtn : resDownBtn}>
+      <div style={windowWidth > 600 ? innerWrapper : resInnerWrapper}>
+            <div style={windowWidth > 600 ? formBtn : resformBtn}>
+              <input
+                type="text"
+                onClick={onFormSubmit}
+                name="btn"
+                value="Edit Part Detail"
+              />
+            </div>
+
+            <div style={windowWidth > 600 ? formBtn : resformBtn}>
+              <input
+                type="text"
+                name="btn"
+                value="Edit Update Detail"
+              />
+            </div>
+
+            <div style={windowWidth > 600 ? formBtn : resformBtn}>
+              <input
+                type="text"
+                name="btn"
+                value="Close"
+              />
+            </div>
+          </div>
+      </div>
+
+
+      
+
+
 
 
       <style jsx>{`
                 /* CSS for table */
                 input[name='btn']{
-                    width: 60%;
-                    padding: 10px 10px;
-                    background-color: #D8CFC4;
-                    font-size:16px;
+                    width: 70%;
+                    padding: 10px 6px;
+                    background-color: #ddd;
+                    font-size:14px;
                     border-radius: 5px;
                     font-weight: 500;
                     text-align: center;
+                    outline: none;
                 }
                 input[name='btn']:hover{
-                    background-color:#E15465;
+                    background-color: grey;
                     color: #fff;
-                    font-size:16px;
+                    font-size:14px;
                     border-radius: 5px;
                     font-weight: 500;
+                    cursor: pointer;
                 }
                 
                 

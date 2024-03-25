@@ -34,7 +34,6 @@ const NavBar = () => {
 
     const Header = {
         'height': '80px',
-        'backgroundColor': '#E6D4B2',
     }
     return (
         <>
