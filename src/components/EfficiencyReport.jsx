@@ -1,12 +1,12 @@
 import React from 'react'
-import NavBar from './Navigation/NavBar'
-import EfficiencyReportTable from "./Table/Efficiency/EfficiencyTable";
+import Navbar  from "./molecules/NavBar"
+import Title  from "./molecules/Title"
 
 function EfficiencyReport() {
   return (
     <div>
-        <NavBar />
-        <EfficiencyReportTable />
+      <Navbar />
+            <Title />
     </div>
   )
 }

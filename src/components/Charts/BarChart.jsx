@@ -1,8 +1,6 @@
 "use client"
 import React, { useEffect, useRef } from 'react';
-import {
-    Card
-} from "../../components/ui/card"
+import UseWindowSize from '../../Hooks/UseWindowSize'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -50,33 +48,70 @@ export const data = {
     ],
 };
 
-const cardBody = {
-    'margin-top': '10px',
-    'padding':'20px',
-    'box-shadow': 'rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px',
-    'border-radius': '5px',
-}
-const cardTitle = {
-    'margin-top': '10px',
-    'padding':'5px',
-    'backgroundColor':'#D7D7D7',
-    'color':'#000',
-    'text-align':'center',
-    'border-radius': '5px',
-}
 const BarChart = () => {
-    return (
+
+    const cardBody = {
+        width: "45%",
+        border: '1px solid #ddd',
+        borderRadius: '5px',
+      }
+      const chartTitle = {
+        padding: '40px',
+        fontSize: '18px',
+        fontWeight: '500'
+      }
+      return (
         <>
-            <div className="w-[100%] d-flex space-between">
-                <Card style={cardTitle}>
-                    <p>Line Wise - Target vs Actual</p>
-                </Card>
-                <Card  style={cardBody}>
-                    <Bar options={options} data={data} width={300} height={300}/>
-                </Card>
-            </div>
+          <div style={cardBody} >
+            <p style={chartTitle}>Line Wise - Defect and Downtime</p>
+            <Bar options={options} data={data} />
+          </div>
         </>
-    )
+      )
+
+    // const [windowWidth, setWindowWidth] = UseWindowSize();
+    // const cardContainer = {
+    //     display: 'flex',
+    //     width: '45%',
+    //     height: "50%",
+    //     flexDirection: 'row',
+    //     flexWrap: 'wrap',
+
+    //     alignItems: 'center',
+    //     marginRight: '40px'
+    // }
+    // const resCardContainer = {
+    //     display: 'flex',
+    //     justifyContent: 'space-evenly',
+    //     flexDirection: 'column',
+    // }
+
+    // const cardBody = {
+    //     width: "80%",
+    //     height: "60%",
+    //     justifyContent: 'center',
+    //     alignItem: 'center',
+    //     border: '1px solid #ddd',
+    //     borderRadius: '5px',
+    // }
+    // const chartTitle = {
+    //     padding: '20px',
+    //     fontSize: '18px',
+    //     fontWeight: '500'
+    // }
+    // return (
+    //     <>
+
+    //         <div style={windowWidth > 600 ? cardContainer : resCardContainer}>
+
+    //             <div style={cardBody} >
+    //             <p style={chartTitle}>Line Wise - Target vs Actual</p>
+    //             <Bar options={options} data={data} />
+    //             </div>
+    //         </div>
+        
+    //     </>
+    // )
 }
 
 export default BarChart;

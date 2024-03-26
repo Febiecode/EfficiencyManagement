@@ -10,7 +10,7 @@ const SideBar = () => {
   return (
     <Sheet width={200}>
       <SheetTrigger asChild>
-        <div className="m-5 absolute">
+        <div className="m-5">
           <MenuIcon width={40} height={40} />
         </div>
       </SheetTrigger>

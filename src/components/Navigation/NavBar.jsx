@@ -40,10 +40,6 @@ const NavBar = () => {
             <div className="w-[100%]" style={Header}>
                 <SideBar />
 
-                <div className='flex space-around justify-center items-center pt-5'>
-                    <img src="https://th.bing.com/th/id/R.cd0eefddd6da8cb434695b761af1b6f3?rik=zO051BNg01mwkw&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_268090.png&ehk=W%2bsAk098xRYGdFrBRr1tHK0lGhIcKfMZNG%2b2GNX1s8o%3d&risl=&pid=ImgRaw&r=0" alt="machine" width={30} height={30}/>
-                    <p className="text-2xl font-extrabold text-center items-center ms-3">{activeLabel}</p>
-                </div>
             </div>
         </>
     )

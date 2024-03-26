@@ -1,10 +1,10 @@
-import NavBar from '../../components/Navigation/NavBar'
+import LineAssign from '../../components/LineAssign'
 import React from 'react'
 
 function page() {
   return (
     <div>
-        <NavBar />
+        <LineAssign />
     </div>
   )
 }

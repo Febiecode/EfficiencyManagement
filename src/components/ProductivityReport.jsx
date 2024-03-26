@@ -1,11 +1,11 @@
-import NavBar from "./Navigation/NavBar";
-import ProductivityTable from "./Table/Productivity/ProductivityTable";
+import Navbar  from "./molecules/NavBar"
+import Title  from "./molecules/Title"
 
 const ProductivityReport = () =>{
     return(
         <>
-            <NavBar />
-            <ProductivityTable />
+            <Navbar />
+            <Title />
         </>
     )
 }

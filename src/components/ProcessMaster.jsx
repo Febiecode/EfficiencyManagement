@@ -1,11 +1,11 @@
 import React from 'react'
-import NavBar from './Navigation/NavBar'
-import Main from "./Table/Process/Main";
+import Navbar  from "./molecules/NavBar"
+import Title  from "./molecules/Title"
 function ProcessMaster() {
   return (
     <div>
-        <NavBar />
-        <Main />
+        <Navbar />
+            <Title />
     </div>
   )
 }

@@ -1,10 +1,10 @@
-import NavBar from '../../components/Navigation/NavBar'
+import MachineMaster from '../../components/MachineMaster'
 import React from 'react'
 
 function page() {
   return (
     <div>
-        <NavBar />
+        <MachineMaster />
     </div>
   )
 }

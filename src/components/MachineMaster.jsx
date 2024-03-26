@@ -1,10 +1,12 @@
 import React from 'react'
-import NavBar from './Navigation/NavBar'
+import Navbar from "./molecules/NavBar"
+import Title from "./molecules/Title"
 
 function MachineMaster() {
   return (
     <div>
-        <NavBar />
+      <Navbar />
+      <Title />
     </div>
   )
 }

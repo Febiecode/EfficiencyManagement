@@ -1,6 +1,6 @@
 "use client"
 import {
-    Card
+  Card
 } from "../../components/ui/card"
 import {
   Chart as ChartJS,
@@ -71,33 +71,32 @@ export const data = {
   ],
 };
 
-const cardBody = {
-    'margin-top': '10px',
-    'padding':'20px',
-    'box-shadow': 'rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px',
-    'border-radius': '5px',
-}
-const cardTitle = {
-    'margin-top': '10px',
-    'padding':'5px',
-    'backgroundColor':'#D7D7D7',
-    'color':'#000',
-    'text-align':'center',
-    'border-radius': '5px',
-}
+
 const LineChart = () => {
-    return (
-        <>
-            <div className="w-[100%] d-flex space-between">
-                <Card style={cardTitle}>
-                    <p>Line Wise - Defect and Downtime</p>
-                </Card>
-                <Card  style={cardBody}>
-                    <Line options={options} data={data} width={300} height={300}/>
-                </Card>
-            </div>
-        </>
-    )
+
+  const cardBody = {
+    width: "45%",
+    justifyContent: 'center',
+    alignItem: 'center',
+    border: '1px solid #ddd',
+    borderRadius: '5px',
+  }
+  const chartTitle = {
+    padding: '40px',
+    fontSize: '18px',
+    fontWeight: '500'
+  }
+  return (
+    <>
+      <div style={cardBody} >
+
+
+
+        <p style={chartTitle}>Line Wise - Defect and Downtime</p>
+        <Line options={options} data={data} />
+      </div>
+    </>
+  )
 }
 
 export default LineChart;
