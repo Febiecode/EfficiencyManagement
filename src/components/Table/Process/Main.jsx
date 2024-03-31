@@ -1,8 +1,11 @@
 'use client'
 import React, { useState, Fragment, useMemo } from "react";
-import Form from "./ProcessForm";
+import ProcessForm from "./ProcessForm";
+import mData from './MOCK_DATA.json'
 
 const Main = () => {
+  const data = useMemo(() => mData, []);
+  const [tableData, setTableData] = useState(data)
     
 
   const [formObject, setFormObject] = useState({
@@ -11,6 +14,7 @@ const Main = () => {
     perPcTime: "",
     status: "",
   });
+  
   const onValChange = (event) => {
     const value = (res) => ({
       ...res,
@@ -33,12 +37,14 @@ const Main = () => {
   };
   return (
     <Fragment>
-      <Form
+      <ProcessForm
         onValChange={onValChange}
         formObject={formObject}
         onFormSubmit={onFormSubmit}
+        tableData={tableData}
       />
-      
+
+
     </Fragment>
   );
 }

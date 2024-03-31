@@ -1,12 +1,14 @@
 import React from 'react'
-import Navbar  from "./molecules/NavBar"
-import Title  from "./molecules/Title"
+import Navbar from "./molecules/NavBar"
+import Title from "./molecules/Title"
+import EfficiencyTable from './Table/Efficiency/EfficiencyTable'
 
 function EfficiencyReport() {
   return (
     <div>
       <Navbar />
-            <Title />
+      <Title />
+      <EfficiencyTable />
     </div>
   )
 }

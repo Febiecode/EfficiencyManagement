@@ -28,11 +28,14 @@ const CustomCard = (props) => {
     }
     return (
         <>
+
+        
             <Card>
 
                 <CardHeader>
                     <p>{props.title}</p>
-                    <CardDescription style={date}>02 Mar 2024 - 10 Mar 2024</CardDescription>
+                    {/* <CardDescription style={date}>02 Mar 2024 - 10 Mar 2024</CardDescription> */}
+                    <CardDescription style={date}>{props.formattedDate}</CardDescription>
                     <CardTitle>{props.count} {props.subTitle}</CardTitle>
 
                 </CardHeader>

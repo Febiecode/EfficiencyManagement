@@ -3,14 +3,12 @@
 import UseWindowSize from '../../../Hooks/UseWindowSize'
 import React, { useState, useMemo } from "react";
 
-import Table from "./ProcessTable";
+import ProcessTable from "./ProcessTable";
 import mData from './MOCK_DATA.json'
 
 
-const ProcessForm = ({ onValChange, formObject, onFormSubmit }) => {
+const ProcessForm = ({ onValChange, formObject, onFormSubmit, tableData }) => {
   const [windowWidth, setWindowWidth] = UseWindowSize();
-  const data = useMemo(() => mData, []);
-  const [tableData, setTableData] = useState(data);
 
   const inputStyle = {
     border: '2px solid #E7E5E4',
@@ -224,7 +222,7 @@ const ProcessForm = ({ onValChange, formObject, onFormSubmit }) => {
       </div>
 
 
-      <Table tableData={tableData} />
+      <ProcessTable tableData={tableData} />
 
       <div style={windowWidth > 600 ? downBtn : resDownBtn}>
       <div style={windowWidth > 600 ? innerWrapper : resInnerWrapper}>
