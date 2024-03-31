@@ -2,10 +2,11 @@
 
 import * as React from "react"
 import {useState} from 'react';
+import {useRangeStore} from "../../Context/Store"
 
 import { addDays, format, formatDate } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
-import { DateRange } from "react-day-picker"
+
 
 import { cn } from "../../lib/utils"
 import { Button } from "../../components/ui/button"
@@ -18,15 +19,20 @@ import {
 
 
 function DatePickerWithRange({ className }) {
+  const range = useRangeStore((state)=>state.range)
   const [date, setDate] = useState({
     from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
+    to: addDays(new Date(2023, 0, 20), 20),
   });
 
-  const formattedFromDate = date.from.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
-  const formattedToDate = date.to.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
+  const formattedFromDate = date?.from?.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
+  const formattedToDate = date?.to?.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
   const formattedString = `${formattedFromDate} - ${formattedToDate}`;
-  console.log(formattedString)
+  const updateRange = useRangeStore((state)=>state.updateRange)
+  updateRange(formattedString)
+
+
+
 
   return (
     <div className={cn("grid gap-2", className)}>
@@ -69,6 +75,5 @@ function DatePickerWithRange({ className }) {
     </div>
   );
 }
-
 export default DatePickerWithRange;
 

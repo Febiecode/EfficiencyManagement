@@ -34,7 +34,8 @@
     "shadcn-ui": "^0.8.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
-    "uuidv4": "^5.0.1"
+    "uuidv4": "^5.0.1",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.1",
